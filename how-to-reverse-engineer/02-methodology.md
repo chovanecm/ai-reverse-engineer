@@ -1,0 +1,218 @@
+# The 5-Step Reverse Engineering Process
+
+Every investigation follows the same pattern regardless of which feature you're studying.
+The steps protect your AI assistant's context window — you never load everything at once.
+
+```
+Step 1 → Size the problem   (how many artifacts?)
+Step 2 → Discover artifacts (save index to disk)
+Step 3 → Inspect the index  (which types matter?)
+Step 4 → Fetch selectively  (read scripts one at a time)
+Step 5 → Write the tutorial (document what you found)
+```
+
+---
+
+## Step 0 - The Fast track
+
+When using `copilot` in the command line, select the largest model available (e.g. `opus-4.6` or `gemini 3 Pro`),
+then:
+
+**Prompt:**
+
+This will likely select a working strategy. You can play around with the prompt, or have it done its job and then call it
+again to follow on details you are interested in.
+
+## Step 1 — Size the problem
+
+Before fetching anything, find out how much there is.
+
+**Prompt:**
+> "How many ServiceNow artifacts match the keyword `<feature-name>`?"
+
+**What Copilot does:**
+```python
+snow_record_count(table="sys_metadata", query="GOTO123TEXTQUERY321=<keyword>")
+```
+
+**Why:** If the count is 50 that's manageable. If it's 3000 you need to narrow the keyword first.
+
+**Example:**
+```
+Keyword: "approval" → 87 artifacts
+```
+
+### Narrowing keywords
+
+If the count is too high, try:
+- A more specific term: `"approval_definition"` instead of `"approval"`
+- A specific artifact type: ask for counts per `sys_class_name`
+- The application name as shown in the ServiceNow app navigator
+
+---
+
+## Step 2 — Discover artifacts
+
+Get the full index of matching artifacts — saved to disk, not into the AI's context.
+
+**Prompt:**
+> "Save the full list of `<keyword>` artifact IDs and types to a file."
+
+**What Copilot does:**
+```python
+snow_record_search(
+    table="sys_metadata",
+    query="GOTO123TEXTQUERY321=<keyword>",
+    fields="sys_id,sys_class_name",
+    limit=500,
+    output_file="/tmp/<keyword>_artifacts.json"
+)
+```
+
+Returns only `{"saved_to": "...", "count": N}` — nothing fills the context yet.
+
+---
+
+## Step 3 — Inspect the index
+
+Now look at what you have.
+
+**Prompt:**
+> "Read the artifact index and tell me how many of each type there are."
+
+Copilot reads the file and summarises:
+
+```
+sys_script_include    32
+sys_business_rule     30
+sys_ui_action         19
+sys_db_object         20
+sys_transform_map     15
+sys_properties         8
+...
+```
+
+**Decide what to investigate first.** A good order:
+1. `sys_db_object` — custom tables (the data model)
+2. `sys_script_include` — business logic
+3. `sys_business_rule` — automatic behaviors
+4. `sys_ui_action` — user-facing workflow
+5. `sys_transform_map` / `sys_transform_entry` — integrations
+
+---
+
+## Step 4 — Fetch selectively
+
+Now read the actual content, one type at a time.
+
+### Fetching a list of names (not content)
+
+Always start by getting names — not scripts — so you can decide which ones matter.
+
+**Prompt:**
+> "List the names of all script includes in the artifact index."
+
+**What Copilot does:**
+```python
+# Get sys_ids of script includes from the saved index
+# Then batch-fetch names only (no script content yet)
+snow_record_search(
+    table="sys_script_include",
+    query="sys_idIN<id1>,<id2>,...",
+    fields="name,description,active",
+    limit=50
+)
+```
+
+### Fetching a single script
+
+Once you've identified which scripts are important:
+
+**Prompt:**
+> "Fetch the full script for `<ScriptIncludeName>`."
+
+```python
+snow_record_search(
+    table="sys_script_include",
+    query="name=<ScriptIncludeName>",
+    fields="name,script,description,active",
+    display_values="values"
+)
+```
+
+### Recommended fields per artifact type
+
+| Table | Fields to fetch |
+|-------|----------------|
+| `sys_script_include` | `name,script,description,active` |
+| `sys_business_rule` | `name,script,condition,filter_condition,when,order,active,advanced` |
+| `sys_ui_action` | `name,script,condition,client_script,hint,active` |
+| `sys_db_object` | `name,label,super_class` |
+| `sys_dictionary` | `name,element,column_label,internal_type,reference` |
+| `sys_transform_entry` | `name,script,condition,active` |
+| `sys_transform_map` | `name,source_table,target_table,active` |
+| `sys_properties` | `name,value,description` |
+
+### For large sets — save to disk
+
+When a type has many records (30+ business rules, 42 properties):
+
+**Prompt:**
+> "Save all business rules matching `<keyword>` to a file, then summarise what they do."
+
+```python
+snow_record_search(
+    table="sys_business_rule",
+    query="sys_idIN<id1>,<id2>,...",
+    fields="name,script,condition,when,active",
+    output_file="/tmp/<keyword>_business_rules.json"
+)
+```
+
+Copilot reads the file progressively, summarising patterns without flooding context.
+
+---
+
+## Step 5 — Write the tutorial
+
+Once you understand a component, have Copilot write it up.
+
+**Prompt:**
+> "Based on what we've found, write a markdown tutorial file explaining the data model —
+> the tables, their purpose, key fields, and how they relate to each other."
+
+Good tutorial structure for a feature:
+
+```
+index.md                  — overview, why the feature exists, audience guide
+01-overview.md            — architecture diagram, key concepts, lifecycle
+02-data-model.md          — tables, fields, ER relationships
+03-script-includes.md     — API reference for script includes
+04-implementing.md        — how to use/integrate the feature
+05-business-rules-ui.md   — automatic behaviors, user workflow
+06-recreating.md          — how to build it from scratch (if needed)
+```
+
+See the companion example repository for a complete real-world example.
+
+---
+
+## Tips
+
+**Don't load everything at once.** Loading 30 full scripts in one query will overflow the
+context window. Name-first, then fetch individually.
+
+**Use `output_file` for large results.** Any search returning more than ~20 records should
+go to a file. The AI reads the file selectively.
+
+**Cross-reference across artifact types.** Business rules often call script includes. Search
+for the script include name in business rule scripts to map dependencies:
+
+> "Which business rules call `<ScriptIncludeName>`?"
+
+**Note the `sys_class_name`.** The `sys_metadata` text search matches across all artifact types.
+Always confirm which table to query before fetching full records — `sys_script_include` not
+`sys_metadata`.
+
+**Check active status.** Always filter or note `active=true` — inactive artifacts are noise
+when understanding current behavior.
