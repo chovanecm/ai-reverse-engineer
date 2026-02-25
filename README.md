@@ -19,6 +19,7 @@ docs/                    ← general methodology (platform-agnostic, GitHub-rend
   01-methodology.md      ← the 5-step reverse engineering process
   02-mkdocs.md           ← how to build browsable docs from findings (uvx mkdocs build)
   03-contributing.md     ← how to add a new platform module
+  04-prompting.md        ← general AI prompting tips for investigations
 platforms/               ← platform-specific modules
   servicenow/            ← ServiceNow guide (setup, methodology, prompts, docs)
   _template/             ← skeleton for a new platform — copy this to add yours

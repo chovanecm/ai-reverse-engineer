@@ -44,6 +44,7 @@ This toolkit is **plugin-based**: a shared methodology layer applies to any plat
 | [01-methodology.md](01-methodology.md) | The general 5-step reverse engineering process |
 | [02-mkdocs.md](02-mkdocs.md) | Building browsable docs from your findings |
 | [03-contributing.md](03-contributing.md) | Adding a new platform module |
+| [04-prompting.md](04-prompting.md) | General AI prompting tips for investigations |
 
 ## For AI agents
 

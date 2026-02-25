@@ -45,8 +45,10 @@ Study sys_metadata, download the relevant scripts, and write me a tutorial.
 |------|---------------|
 | [01-setup.md](01-setup.md) | Install snow, configure instance, wire up AI |
 | [02-methodology.md](02-methodology.md) | The 5-step process applied to ServiceNow artifacts |
-| [03-copilot-prompts.md](03-copilot-prompts.md) | Prompt patterns for common tasks |
-| [04-documenting-findings.md](04-documenting-findings.md) | Documentation structure and MkDocs tips |
+| [03-copilot-prompts.md](03-copilot-prompts.md) | ServiceNow-specific prompt examples |
+
+For documentation structure and MkDocs, see [`docs/02-mkdocs.md`](../../docs/02-mkdocs.md).
+For general prompting tips, see [`docs/04-prompting.md`](../../docs/04-prompting.md).
 
 ## Skill
 

@@ -181,38 +181,24 @@ Once you understand a component, have Copilot write it up.
 > "Based on what we've found, write a markdown tutorial file explaining the data model —
 > the tables, their purpose, key fields, and how they relate to each other."
 
-Good tutorial structure for a feature:
-
-```
-index.md                  — overview, why the feature exists, audience guide
-01-overview.md            — architecture diagram, key concepts, lifecycle
-02-data-model.md          — tables, fields, ER relationships
-03-script-includes.md     — API reference for script includes
-04-implementing.md        — how to use/integrate the feature
-05-business-rules-ui.md   — automatic behaviors, user workflow
-06-recreating.md          — how to build it from scratch (if needed)
-```
-
-See the companion example repository for a complete real-world example.
+For documentation structure, naming conventions, and MkDocs setup, see [`docs/02-mkdocs.md`](../../docs/02-mkdocs.md).
+For general prompting tips when writing docs, see [`docs/04-prompting.md`](../../docs/04-prompting.md).
 
 ---
 
-## Tips
+## ServiceNow-specific tips
 
-**Don't load everything at once.** Loading 30 full scripts in one query will overflow the
-context window. Name-first, then fetch individually.
-
-**Use `output_file` for large results.** Any search returning more than ~20 records should
-go to a file. The AI reads the file selectively.
+**Note the `sys_class_name`.** The `sys_metadata` text search matches across all artifact types.
+Always confirm which table to query before fetching full records — `sys_script_include` not
+`sys_metadata`.
 
 **Cross-reference across artifact types.** Business rules often call script includes. Search
 for the script include name in business rule scripts to map dependencies:
 
 > "Which business rules call `<ScriptIncludeName>`?"
 
-**Note the `sys_class_name`.** The `sys_metadata` text search matches across all artifact types.
-Always confirm which table to query before fetching full records — `sys_script_include` not
-`sys_metadata`.
-
 **Check active status.** Always filter or note `active=true` — inactive artifacts are noise
 when understanding current behavior.
+
+**Use `output_file` for large results.** Any search returning more than ~20 records should
+go to a file. The AI reads the file selectively.

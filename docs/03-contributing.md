@@ -9,8 +9,9 @@ A platform module is a folder under `platforms/<platform-name>/` containing:
 1. **`README.md`** — what the platform is, what the module covers, quick-start
 2. **`01-setup.md`** — how to install platform-specific tools, configure credentials, wire up AI
 3. **`02-methodology.md`** — the general 5-step process applied to this platform's artifacts and APIs
-4. **`03-copilot-prompts.md`** *(optional)* — prompt patterns that work especially well for this platform
-5. **`04-documenting-findings.md`** *(optional)* — any platform-specific documentation tips
+4. **`03-copilot-prompts.md`** *(optional)* — platform-specific prompt examples (generic tips live in `docs/04-prompting.md`)
+
+Documentation structure and MkDocs setup are covered by the general guides in `docs/` — platform modules should not duplicate them.
 
 Optionally, a platform module may also include a Copilot skill under `skills/<platform>-*/SKILL.md`.
 

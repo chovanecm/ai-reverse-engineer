@@ -131,16 +131,12 @@ The skill tells Copilot:
 
 ## 6. Install MkDocs (for publishing findings)
 
-```bash
-pipx install mkdocs
-```
+See [`docs/02-mkdocs.md`](../../docs/02-mkdocs.md) for full instructions. In short:
 
-Verify:
 ```bash
-mkdocs --version
+curl -LsSf https://astral.sh/uv/install.sh | sh   # install uv (once)
+uvx mkdocs --version                                # run mkdocs without global install
 ```
-
-This converts your markdown files into a browsable static site that works offline (no web server needed).
 
 ## You're ready
 
