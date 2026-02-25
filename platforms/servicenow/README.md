@@ -2,7 +2,7 @@
 
 A guide for systematically reverse engineering ServiceNow functionality using the `snow` CLI and GitHub Copilot (or Claude Desktop).
 
-This module implements the [general 5-step methodology](../../docs/01-methodology.md) with ServiceNow-specific tooling.
+This module implements the [general 5-step methodology](../../README.md#methodology) with ServiceNow-specific tooling.
 
 ## What you'll be able to do
 
@@ -47,8 +47,8 @@ Study sys_metadata, download the relevant scripts, and write me a tutorial.
 | [02-methodology.md](02-methodology.md) | The 5-step process applied to ServiceNow artifacts |
 | [03-copilot-prompts.md](03-copilot-prompts.md) | ServiceNow-specific prompt examples |
 
-For documentation structure and MkDocs, see [`docs/02-mkdocs.md`](../../docs/02-mkdocs.md).
-For general prompting tips, see [`docs/04-prompting.md`](../../docs/04-prompting.md).
+For documentation structure and MkDocs, see [Building docs from findings](../../README.md#building-docs-from-findings).
+For general prompting tips, see [Prompting the AI](../../README.md#prompting-the-ai).
 
 ## Skill
 

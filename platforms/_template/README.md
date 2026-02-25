@@ -4,7 +4,7 @@
 
 A guide for systematically reverse engineering `<PLATFORM>` features using AI assistance.
 
-This module implements the [general 5-step methodology](../../docs/01-methodology.md) with `<PLATFORM>`-specific tooling.
+This module implements the [general 5-step methodology](../../README.md#methodology) with `<PLATFORM>`-specific tooling.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ This module implements the [general 5-step methodology](../../docs/01-methodolog
 - Access to a `<PLATFORM>` instance
 - `<CLI tool>` installed — see [01-setup.md](01-setup.md)
 - GitHub Copilot CLI or another MCP-compatible AI agent
-- *(optional)* `uv` for building documentation — see [docs/02-mkdocs.md](../../docs/02-mkdocs.md)
+- *(optional)* `uv` for building documentation — see [Building docs](../../README.md#building-docs-from-findings)
 
 ## Quick start
 

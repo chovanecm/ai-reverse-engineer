@@ -1,6 +1,6 @@
 # The 5-Step Reverse Engineering Process — ServiceNow
 
-The general 5-step process is described in [`docs/01-methodology.md`](../../docs/01-methodology.md).
+The general 5-step process is described in the [README Methodology section](../../README.md#methodology).
 This file shows how to apply it to ServiceNow specifically, using `snow` CLI tools and the ServiceNow artifact model.
 
 ```
@@ -181,8 +181,8 @@ Once you understand a component, have Copilot write it up.
 > "Based on what we've found, write a markdown tutorial file explaining the data model —
 > the tables, their purpose, key fields, and how they relate to each other."
 
-For documentation structure, naming conventions, and MkDocs setup, see [`docs/02-mkdocs.md`](../../docs/02-mkdocs.md).
-For general prompting tips when writing docs, see [`docs/04-prompting.md`](../../docs/04-prompting.md).
+For documentation structure, naming conventions, and MkDocs setup, see [Building docs from findings](../../README.md#building-docs-from-findings).
+For general prompting tips when writing docs, see [Prompting the AI](../../README.md#prompting-the-ai).
 
 ---
 

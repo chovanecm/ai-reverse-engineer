@@ -3,7 +3,7 @@
 <!-- TODO: Replace <PLATFORM> and all placeholders throughout this file -->
 <!-- TODO: This file adapts the general 5-step methodology to your platform's specific artifacts and APIs -->
 
-The general methodology is described in [`docs/01-methodology.md`](../../docs/01-methodology.md).
+The general methodology is described in the [README Methodology section](../../README.md#methodology).
 This file shows how to apply it to `<PLATFORM>` specifically.
 
 ## Step 0 — Fast track
@@ -108,7 +108,7 @@ index.md              — overview, audience guide
 05-behaviors.md       — automatic behaviors, user workflow
 ```
 
-See [`docs/02-mkdocs.md`](../../docs/02-mkdocs.md) for how to build a browsable site from these files.
+See [Building docs from findings](../../README.md#building-docs-from-findings) for how to build a browsable site from these files.
 
 ---
 

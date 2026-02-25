@@ -2,7 +2,7 @@
 
 ServiceNow-specific prompt examples for reverse engineering with the `servicenow-mcp` skill.
 
-> **General prompting tips** (scope, audience, iteration, etc.) apply to all platforms — see [`docs/04-prompting.md`](../../docs/04-prompting.md).
+> **General prompting tips** (scope, audience, iteration, etc.) apply to all platforms — see [Prompting the AI](../../README.md#prompting-the-ai).
 
 ## How the servicenow-mcp skill works
 
