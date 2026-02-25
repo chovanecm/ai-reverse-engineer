@@ -64,7 +64,14 @@ Repeat for each interesting artifact. If there are many of the same type, batch 
 > **Note**: `sys_metadata` text search returns `sys_id` and `sys_class_name` but NOT `name`. Always follow up with a query on the specific child table to get the name and content.
 
 ### Step 5 — Write a tutorial
-After studying the relevant artifacts, write a Markdown file explaining the business logic, implementation patterns, data flows, and any notable conditions or edge cases.
+After studying the relevant artifacts, use the repository's template to structure your documentation.
+
+1. Create a new directory for the feature: `cp -r template <feature-name>`
+2. Populate `docs-markdown/index.md` with an overview (business logic, implementation patterns).
+3. Create additional markdown files in `docs-markdown/` for deep dives (e.g., `data-model.md`, `scripts.md`).
+4. Update `mkdocs.yml` to include the new pages in the navigation.
+
+**Do NOT use the `_template` directory.** Use the `template` directory at the root of the repository.
 
 ---
 
