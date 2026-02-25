@@ -3,25 +3,7 @@
 The general 5-step process is described in the [README Methodology section](../../README.md#methodology).
 This file shows how to apply it to ServiceNow specifically, using `snow` CLI tools and the ServiceNow artifact model.
 
-```
-Step 1 → Size the problem   (how many artifacts?)
-Step 2 → Discover artifacts (save index to disk)
-Step 3 → Inspect the index  (which types matter?)
-Step 4 → Fetch selectively  (read scripts one at a time)
-Step 5 → Write the tutorial (document what you found)
-```
-
 ---
-
-## Step 0 - The Fast track
-
-When using `copilot` in the command line, select the largest model available (e.g. `opus-4.6` or `gemini 3 Pro`),
-then:
-
-**Prompt:**
-
-This will likely select a working strategy. You can play around with the prompt, or have it done its job and then call it
-again to follow on details you are interested in.
 
 ## Step 1 — Size the problem
 

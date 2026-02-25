@@ -129,19 +129,9 @@ The skill tells Copilot:
 >
 > You need both. The MCP server provides the capability; the skill file provides the intelligence.
 
-## 6. Install MkDocs (for publishing findings)
-
-See [Building docs from findings](../../README.md#building-docs-from-findings) for full instructions. In short:
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh   # install uv (once)
-uvx mkdocs --version                                # run mkdocs without global install
-```
-
 ## You're ready
 
-Once `snow login` works, the MCP server is registered, and `mkdocs --version` prints a version,
-you have everything.
+Once `snow login` works and the MCP server is registered, you have everything you need.
 
 Continue to [02-methodology.md](02-methodology.md) to start your first investigation.
-For documentation setup, see [Building docs from findings](../../README.md#building-docs-from-findings).
+To build browsable docs from your findings, see [Building docs from findings](../../README.md#building-docs-from-findings).

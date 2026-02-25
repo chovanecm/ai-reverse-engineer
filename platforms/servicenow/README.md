@@ -20,19 +20,7 @@ This module implements the [general 5-step methodology](../../README.md#methodol
 
 ## Quick start
 
-```bash
-# 1. Install the snow CLI
-pipx install "git+https://github.com/chovanecm/snow-run-python@main"
-
-# 2. Configure your instance
-snow add --default your-instance.service-now.com
-snow login
-
-# 3. Register the MCP server (GitHub Copilot CLI)
-# Edit ~/.copilot/mcp-config.json — see 01-setup.md for full instructions
-```
-
-Then start an investigation:
+See [01-setup.md](01-setup.md) for full setup instructions. Once ready, start an investigation:
 
 ```
 Reverse engineer the 'approval' functionality.
