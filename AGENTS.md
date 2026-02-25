@@ -26,82 +26,20 @@ See [`skills/registry.yaml`](skills/registry.yaml) for a machine-readable versio
 
 ## Platform setup instructions
 
-### ServiceNow
+### How to add/setup a platform skill
+
+Each platform module provides its own skill and setup instructions. Follow the steps below for any platform:
+
+1. **Install the platform-specific CLI/tool** (see the platform's README).
+2. **Configure your instance or environment** (see platform docs).
+3. **Register the CLI/tool as an MCP server** (see platform skill docs).
+4. **Start your investigation** (see platform methodology).
+
+#### Example: ServiceNow
 
 **Skill:** `servicenow-mcp` — reverse engineer ServiceNow features, query tables, run scripts.
 
-#### Step 1 — Install the `snow` CLI
-
-```bash
-pipx install "git+https://github.com/chovanecm/snow-run-python@main"
-```
-
-Verify:
-```bash
-snow --help
-```
-
-#### Step 2 — Configure your ServiceNow instance
-
-```bash
-snow add --default your-instance.service-now.com
-snow login
-```
-
-#### Step 3 — Register `snow` as an MCP server
-
-**GitHub Copilot CLI** — run inside a Copilot CLI session:
-
-```
-/mcp add servicenow
-```
-
-When prompted:
-- **Type:** `local`
-- **Command:** `snow`
-- **Args:** `mcp`
-
-Or edit `~/.copilot/mcp-config.json` directly:
-
-```json
-{
-  "mcpServers": {
-    "servicenow": {
-      "type": "local",
-      "command": "snow",
-      "args": ["mcp"],
-      "tools": ["*"]
-    }
-  }
-}
-```
-
-**Claude Desktop** — add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
-or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
-
-```json
-{
-  "mcpServers": {
-    "servicenow": {
-      "command": "snow",
-      "args": ["mcp"]
-    }
-  }
-}
-```
-
-**Other MCP-compatible editors** — use `snow mcp` as the server command. Consult your editor's MCP docs.
-
-#### Step 4 — Start an investigation
-
-With the skill loaded and MCP configured:
-
-```
-Reverse engineer the 'approval' functionality.
-Study sys_metadata, download relevant scripts, and write a tutorial.
-```
-
-Full guide: [`platforms/servicenow/`](platforms/servicenow/)
+See [`platforms/servicenow/`](platforms/servicenow/) for detailed ServiceNow setup and investigation steps.
 
 ---
 

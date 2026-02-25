@@ -33,58 +33,12 @@ AGENTS.md                ← AI agent bootstrap guide (read this if you're an AI
 
 Read [`AGENTS.md`](AGENTS.md) — it lists all available skills and the exact steps to install and configure them (including MCP server setup).
 
-## Quick start — ServiceNow
+## Quick start
 
-### 1. Prerequisites
-
-- [`snow` CLI](https://github.com/chovanecm/snow-run-python) — `pipx install "git+https://github.com/chovanecm/snow-run-python@main"`
-- [`uv`](https://docs.astral.sh/uv/) — `curl -LsSf https://astral.sh/uv/install.sh | sh` *(for building docs)*
-- GitHub Copilot CLI or Claude Desktop
-
-### 2. Add your ServiceNow instance
-
-```bash
-snow add --default your-instance.service-now.com
-snow login
-```
-
-### 3. Register the MCP server (one-time)
-
-Add to `~/.copilot/mcp-config.json`:
-
-```json
-{
-  "mcpServers": {
-    "servicenow": {
-      "type": "local",
-      "command": "snow",
-      "args": ["mcp"],
-      "tools": ["*"]
-    }
-  }
-}
-```
-
-For Claude Desktop, see [platforms/servicenow/01-setup.md](platforms/servicenow/01-setup.md).
-
-### 4. Clone this repo and start Copilot CLI here
-
-```bash
-git clone <this-repo> reverse-engineering
-cd reverse-engineering
-gh copilot
-```
-
-The `skills/servicenow-mcp/SKILL.md` file is auto-loaded — Copilot now knows the full reverse engineering workflow.
-
-### 5. Start investigating
-
-```
-Reverse engineer the 'approval' functionality.
-Study sys_metadata, download the relevant scripts, and write me a tutorial.
-```
-
-Full guide: [platforms/servicenow/](platforms/servicenow/)
+1. Clone this repository and open a Copilot CLI session inside it.
+2. Pick a platform from the table above and follow its module's setup guide (`platforms/<platform>/01-setup.md`).
+3. Skill files in `skills/` are **automatically loaded** by GitHub Copilot CLI — Copilot learns which tools to call and how to run the 5-step workflow.
+4. Start investigating.
 
 ## How the skills work
 

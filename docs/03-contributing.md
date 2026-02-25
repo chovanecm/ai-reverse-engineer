@@ -64,7 +64,7 @@ Add an entry to [`skills/registry.yaml`](../skills/registry.yaml):
 
 ### 5. Update AGENTS.md
 
-Add a section for your platform to [`AGENTS.md`](../AGENTS.md) following the existing ServiceNow section as a model.
+Add a row for your platform to the skills table in [`AGENTS.md`](../AGENTS.md).
 
 ### 6. Update README.md
 
