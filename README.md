@@ -1,51 +1,45 @@
-# ServiceNow Reverse Engineering Toolkit
+# Reverse Engineering Toolkit
 
-A methodology guide and project template for systematically reverse engineering ServiceNow
-functionality using the `snow` CLI and GitHub Copilot CLI (or Claude Desktop).
+A methodology and tooling guide for systematically reverse engineering software platforms using AI agents.
 
-Clone this repo, configure the MCP server once, and you can investigate any ServiceNow feature
-by asking Copilot to dig through scripts, business rules, and UI artifacts.
+This toolkit is **plugin-based**: a shared methodology layer applies to any platform, and each platform is a self-contained module under `platforms/`.
 
-## What's in here
+## Available platform modules
 
-```
-.github/skills/servicenow-mcp/SKILL.md   ← Copilot CLI skill (auto-loaded)
-how-to-reverse-engineer/                  ← Step-by-step methodology guide
-template/                                 ← Starter project for a new investigation
-```
+| Platform | Module | Skill |
+|----------|--------|-------|
+| ServiceNow | [`platforms/servicenow/`](platforms/servicenow/) | [`skills/servicenow-mcp/SKILL.md`](skills/servicenow-mcp/SKILL.md) |
 
-### The guide
+> Want to add a platform? See [docs/03-contributing.md](docs/03-contributing.md).
 
-`how-to-reverse-engineer/` walks through the entire process:
-
-| File | Contents |
-|------|----------|
-| `index.md` | Overview — what this is and what you'll be able to do |
-| `01-setup.md` | **Start here** — install snow, configure instance, register MCP |
-| `02-methodology.md` | The 5-step reverse engineering process |
-| `03-copilot-prompts.md` | Prompt patterns; how the skill works |
-| `04-documenting-findings.md` | Structuring findings, MkDocs, publishing |
-
-### The template
-
-`template/` is a copy-paste starting point for a new investigation:
+## Repository layout
 
 ```
-template/
-├── README.md          ← describe what you're investigating
-├── Makefile           ← make build / make start / make clean
-├── mkdocs.yml         ← pre-configured, just change site_name
-└── markdown/
-    └── index.md       ← your findings go here
+docs/                    ← general methodology (platform-agnostic, GitHub-rendered)
+  01-methodology.md      ← the 5-step reverse engineering process
+  02-mkdocs.md           ← how to build browsable docs from findings (uvx mkdocs build)
+  03-contributing.md     ← how to add a new platform module
+platforms/               ← platform-specific modules
+  servicenow/            ← ServiceNow guide (setup, methodology, prompts, docs)
+  _template/             ← skeleton for a new platform — copy this to add yours
+skills/                  ← Copilot skill files (auto-loaded by GitHub Copilot CLI)
+  registry.yaml          ← machine-readable skill registry
+  servicenow-mcp/        ← ServiceNow skill
+template/                ← copy-paste starting point for a new investigation project
+AGENTS.md                ← AI agent bootstrap guide (read this if you're an AI agent)
 ```
 
-## Quick start
+## For AI agents
+
+Read [`AGENTS.md`](AGENTS.md) — it lists all available skills and the exact steps to install and configure them (including MCP server setup).
+
+## Quick start — ServiceNow
 
 ### 1. Prerequisites
 
-- [snow CLI](https://github.com/chovanecm/snow-run-python) — `pipx install "git+https://github.com/chovanecm/snow-run-python@main"`
-- [MkDocs](https://www.mkdocs.org/) — `pipx install mkdocs`
-- [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli/) or [Claude Desktop](https://claude.ai/download)
+- [`snow` CLI](https://github.com/chovanecm/snow-run-python) — `pipx install "git+https://github.com/chovanecm/snow-run-python@main"`
+- [`uv`](https://docs.astral.sh/uv/) — `curl -LsSf https://astral.sh/uv/install.sh | sh` *(for building docs)*
+- GitHub Copilot CLI or Claude Desktop
 
 ### 2. Add your ServiceNow instance
 
@@ -71,18 +65,17 @@ Add to `~/.copilot/mcp-config.json`:
 }
 ```
 
-For Claude Desktop, see [how-to-reverse-engineer/01-setup.md](how-to-reverse-engineer/01-setup.md).
+For Claude Desktop, see [platforms/servicenow/01-setup.md](platforms/servicenow/01-setup.md).
 
 ### 4. Clone this repo and start Copilot CLI here
 
 ```bash
-git clone <this-repo> servicenow-reverse-engineering
-cd servicenow-reverse-engineering
-gh copilot          # or: copilot
+git clone <this-repo> reverse-engineering
+cd reverse-engineering
+gh copilot
 ```
 
-The `.github/skills/servicenow-mcp/SKILL.md` file is auto-loaded — Copilot now knows the
-full reverse engineering workflow.
+The `skills/servicenow-mcp/SKILL.md` file is auto-loaded — Copilot now knows the full reverse engineering workflow.
 
 ### 5. Start investigating
 
@@ -91,17 +84,19 @@ Reverse engineer the 'approval' functionality.
 Study sys_metadata, download the relevant scripts, and write me a tutorial.
 ```
 
-Read the full guide starting at [how-to-reverse-engineer/index.md](how-to-reverse-engineer/index.md).
+Full guide: [platforms/servicenow/](platforms/servicenow/)
 
-## How the skill works
+## How the skills work
 
-The skill file (`.github/skills/servicenow-mcp/SKILL.md`) is automatically loaded by
-GitHub Copilot CLI when you work in this directory. It teaches Copilot:
+Skill files in `skills/` are **automatically loaded** by GitHub Copilot CLI when you work in this directory. They teach Copilot:
 
-- Which `snow` tools to call for discovery vs inspection vs script fetching
-- How to avoid overloading the AI context window (output files, field projection)
-- The 5-step workflow: size → discover → inspect → fetch → document
-- Which fields are most useful for each artifact type (business rules, script includes, etc.)
+- Which MCP tools to call for which tasks
+- How to run the 5-step reverse engineering workflow
+- Which fields to fetch for each artifact type
+- How to avoid overloading the context window
 
-The MCP server registration (step 3 above) gives Copilot the *capability* to call `snow`.
-The skill file gives it the *knowledge* of how to use it well.
+The MCP server registration gives Copilot the *capability* to call the tools. The skill file gives it the *knowledge* of how to use them well.
+
+## Contributing
+
+Add a new platform module by following the guide in [docs/03-contributing.md](docs/03-contributing.md) and copying [platforms/_template/](platforms/_template/).

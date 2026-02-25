@@ -1,11 +1,11 @@
-# Copilot Prompts That Work
+# Copilot Prompts That Work — ServiceNow
 
 A reference of prompt patterns that work well for reverse engineering ServiceNow functionality.
 
 ## How the servicenow-mcp skill works
 
 When you work in this repository, GitHub Copilot CLI automatically loads the
-`.github/skills/servicenow-mcp/SKILL.md` skill. This skill tells Copilot:
+`skills/servicenow-mcp/SKILL.md` skill. This skill tells Copilot:
 
 - Which `snow` tools are available (and when to use each one)
 - How to run the 5-step reverse engineering workflow

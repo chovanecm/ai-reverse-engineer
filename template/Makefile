@@ -1,10 +1,10 @@
 .PHONY: build start clean
 
 build:
-	mkdocs build --no-directory-urls
+	uvx mkdocs build
 
 start:
-	mkdocs serve
+	uvx mkdocs serve
 
 clean:
-	rm -rf html
+	rm -rf docs-html

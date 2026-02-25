@@ -1,7 +1,7 @@
-# The 5-Step Reverse Engineering Process
+# The 5-Step Reverse Engineering Process — ServiceNow
 
-Every investigation follows the same pattern regardless of which feature you're studying.
-The steps protect your AI assistant's context window — you never load everything at once.
+The general 5-step process is described in [`docs/01-methodology.md`](../../docs/01-methodology.md).
+This file shows how to apply it to ServiceNow specifically, using `snow` CLI tools and the ServiceNow artifact model.
 
 ```
 Step 1 → Size the problem   (how many artifacts?)

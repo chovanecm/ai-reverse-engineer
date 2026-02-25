@@ -1,6 +1,8 @@
-# Setup
+# Setup — ServiceNow
 
 Get the `snow` CLI installed, your instance configured, and the AI assistant connected.
+
+> **General methodology:** This guide is ServiceNow-specific. For the platform-agnostic principles, see [`docs/01-methodology.md`](../../docs/01-methodology.md).
 
 ## 1. Install the snow CLI
 
@@ -148,3 +150,4 @@ Once `snow login` works, the MCP server is registered, and `mkdocs --version` pr
 you have everything.
 
 Continue to [02-methodology.md](02-methodology.md) to start your first investigation.
+For documentation setup, see [docs/02-mkdocs.md](../../docs/02-mkdocs.md).

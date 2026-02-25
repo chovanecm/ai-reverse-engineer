@@ -1,6 +1,8 @@
-# Documenting Your Findings
+# Documenting Your Findings — ServiceNow
 
 How to structure, build, and share the documentation you produce.
+
+> For the full MkDocs setup guide (including `uvx mkdocs build` and `file://` protocol setup), see [`docs/02-mkdocs.md`](../../docs/02-mkdocs.md).
 
 ## Project layout
 
@@ -11,21 +13,21 @@ tutorials/<feature-name>/
 ├── README.md          — what this documents, how to build the site
 ├── Makefile           — build/start/clean commands
 ├── mkdocs.yml         — site config (title, nav, theme)
-├── markdown/          — your documentation source (edit these)
+├── docs-markdown/     — your documentation source (edit these)
 │   ├── index.md
 │   ├── 01-overview.md
 │   └── ...
-└── html/              — built site (open index.html in browser)
+└── docs-html/         — built site (open index.html in browser)
 ```
 
-The `markdown/` folder is the only thing you edit. Everything else is infrastructure.
+The `docs-markdown/` folder is the only thing you edit. Everything else is infrastructure.
 
 ## Start from the template
 
 Copy the project template to start a new investigation:
 
 ```bash
-cp -r tutorials/template tutorials/<feature-name>
+cp -r template tutorials/<feature-name>
 cd tutorials/<feature-name>
 ```
 
@@ -38,12 +40,12 @@ site_name: My Feature Name
 ## The Makefile
 
 ```bash
-make build   # convert markdown/ → html/  (MkDocs)
+make build   # convert docs-markdown/ → docs-html/  (MkDocs)
 make start   # live preview at http://localhost:8000
-make clean   # delete html/
+make clean   # delete docs-html/
 ```
 
-`make build` produces flat HTML files in `html/`. Open `html/index.html` directly
+`make build` produces flat HTML files in `docs-html/`. Open `docs-html/index.html` directly
 in any browser — no web server needed, works offline.
 
 ## Writing the markdown files
@@ -112,21 +114,21 @@ MkDocs rewrites these to correct HTML paths automatically.
 ## Sharing the documentation
 
 **Option 1: Share the folder** — zip up the whole `tutorials/<feature>/` directory.
-Colleagues run `make build` to regenerate `html/`, then open `html/index.html`.
+Colleagues run `make build` to regenerate `docs-html/`, then open `docs-html/index.html`.
 
-**Option 2: Share just `html/`** — zip up only the built `html/` folder.
-Recipients open `html/index.html` directly. No tools required.
+**Option 2: Share just `docs-html/`** — zip up only the built `docs-html/` folder.
+Recipients open `docs-html/index.html` directly. No tools required.
 
-**Option 3: Host it** — put `html/` on any static file server (GitHub Pages, nginx, S3).
+**Option 3: Host it** — put `docs-html/` on any static file server (GitHub Pages, nginx, S3).
 `make start` serves it locally at `http://localhost:8000` for a quick preview.
 
 ## Keeping docs current
 
 When you discover more about the feature:
 
-1. Edit the relevant `markdown/*.md` file
+1. Edit the relevant `docs-markdown/*.md` file
 2. Run `make build`
-3. `html/` is updated
+3. `docs-html/` is updated
 
-The source of truth is always `markdown/`. The `html/` folder is disposable — regenerate
+The source of truth is always `docs-markdown/`. The `docs-html/` folder is disposable — regenerate
 it any time with `make build`.

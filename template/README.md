@@ -5,21 +5,23 @@ Reverse-engineered documentation for `<feature-name>` on `<instance>`.
 ## Structure
 
 ```
-markdown/    ← edit documentation here
-html/        ← built site — open html/index.html in browser
-mkdocs.yml   ← build configuration
+docs-markdown/    ← edit documentation here
+docs-html/        ← built site — open docs-html/index.html in browser
+mkdocs.yml        ← build configuration
 ```
 
 ## Build
 
+Requires [`uv`](https://docs.astral.sh/uv/) — install once with `curl -LsSf https://astral.sh/uv/install.sh | sh`.
+
 ```bash
-make build   # generates html/
+make build   # generates docs-html/
 make start   # live preview at http://localhost:8000
-make clean   # remove html/
+make clean   # remove docs-html/
 ```
 
 ## Contents
 
 | File | Topic |
 |------|-------|
-| `markdown/index.md` | Overview |
+| `docs-markdown/index.md` | Overview |
