@@ -52,6 +52,6 @@ For general prompting tips, see [`docs/04-prompting.md`](../../docs/04-prompting
 
 ## Skill
 
-The `servicenow-mcp` skill in [`skills/servicenow-mcp/SKILL.md`](../../skills/servicenow-mcp/SKILL.md)
+The `servicenow-mcp` skill in [`SKILL.md`](SKILL.md)
 can be loaded via `/skills` in Copilot CLI.
 It teaches Copilot which `snow` tools to call, the 5-step workflow, and how to avoid overloading the context window.

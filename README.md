@@ -8,7 +8,7 @@ This toolkit is **plugin-based**: a shared methodology layer applies to any plat
 
 | Platform | Module | Skill |
 |----------|--------|-------|
-| ServiceNow | [`platforms/servicenow/`](platforms/servicenow/) | [`skills/servicenow-mcp/SKILL.md`](skills/servicenow-mcp/SKILL.md) |
+| ServiceNow | [`platforms/servicenow/`](platforms/servicenow/) | [`platforms/servicenow/SKILL.md`](platforms/servicenow/SKILL.md) |
 
 > Want to add a platform? See [docs/03-contributing.md](docs/03-contributing.md).
 
@@ -21,11 +21,10 @@ docs/                    ← general methodology (platform-agnostic, GitHub-rend
   03-contributing.md     ← how to add a new platform module
   04-prompting.md        ← general AI prompting tips for investigations
 platforms/               ← platform-specific modules
-  servicenow/            ← ServiceNow guide (setup, methodology, prompts, docs)
+  servicenow/            ← ServiceNow guide (setup, methodology, prompts, SKILL.md)
   _template/             ← skeleton for a new platform — copy this to add yours
-skills/                  ← Copilot skill files (load with /skills in Copilot CLI)
-  registry.yaml          ← machine-readable skill registry
-  servicenow-mcp/        ← ServiceNow skill
+skills/                  ← machine-readable skill registry
+  registry.yaml          ← maps each platform to its skill file
 template/                ← copy-paste starting point for a new investigation project
 AGENTS.md                ← AI agent bootstrap guide (read this if you're an AI agent)
 ```

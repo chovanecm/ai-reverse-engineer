@@ -112,7 +112,7 @@ documentation for the exact config format; the command is always `snow mcp`.
 
 ## 5. How the skill file works (Copilot CLI only)
 
-This repository contains `skills/servicenow-mcp/SKILL.md`. Load it once via `/skills` in Copilot CLI.
+This repository contains `platforms/servicenow/SKILL.md`. Load it once via `/skills` in Copilot CLI.
 
 The skill tells Copilot:
 - Which MCP tools to call for which tasks (`snow_record_search`, `snow_run_script`, etc.)

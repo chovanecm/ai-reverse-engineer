@@ -6,8 +6,8 @@ Each module comes with a Copilot skill that teaches the AI which tools to call a
 ## Quick orientation
 
 ```
-skills/          ← Copilot skill files (load with /skills in Copilot CLI)
-platforms/       ← Platform-specific setup and methodology guides
+platforms/       ← Platform-specific guides + skill files (SKILL.md per platform)
+skills/          ← Machine-readable skill registry (registry.yaml)
 docs/            ← General methodology (applies to all platforms)
 template/        ← Copy-paste starting point for a new investigation project
 ```
@@ -18,7 +18,7 @@ Skill files in `skills/` are loaded via `/skills` in Copilot CLI.
 
 | Skill | Skill file | Platform guide |
 |-------|-----------|----------------|
-| `servicenow-mcp` | [`skills/servicenow-mcp/SKILL.md`](skills/servicenow-mcp/SKILL.md) | [`platforms/servicenow/`](platforms/servicenow/) |
+| `servicenow-mcp` | [`platforms/servicenow/SKILL.md`](platforms/servicenow/SKILL.md) | [`platforms/servicenow/`](platforms/servicenow/) |
 
 See [`skills/registry.yaml`](skills/registry.yaml) for a machine-readable version of this table.
 

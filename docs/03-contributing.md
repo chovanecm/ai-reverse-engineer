@@ -31,14 +31,13 @@ Replace all `<PLATFORM>` placeholders with your platform's name.
 
 ### 3. Add a Copilot skill (strongly recommended)
 
-If your platform has an MCP server or CLI tool, create a skill file:
+If your platform has an MCP server or CLI tool, create a skill file directly in the platform directory:
 
 ```bash
-mkdir -p skills/<platform>-mcp
-# create skills/<platform>-mcp/SKILL.md
+# create platforms/<your-platform>/SKILL.md
 ```
 
-The skill file teaches the AI agent which tools to call and in what order. See [`skills/servicenow-mcp/SKILL.md`](../skills/servicenow-mcp/SKILL.md) as a reference.
+The skill file teaches the AI agent which tools to call and in what order. See [`platforms/servicenow/SKILL.md`](../platforms/servicenow/SKILL.md) as a reference.
 
 ### 4. Register your skill in the registry
 
@@ -47,7 +46,7 @@ Add an entry to [`skills/registry.yaml`](../skills/registry.yaml):
 ```yaml
 - id: <platform>-mcp
   name: <Platform> MCP
-  file: skills/<platform>-mcp/SKILL.md
+  file: platforms/<platform>/SKILL.md
   platform: <platform>
   guide: platforms/<platform>/01-setup.md
   prerequisites:

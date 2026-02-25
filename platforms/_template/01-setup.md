@@ -95,7 +95,7 @@ Restart Claude Desktop.
 
 <!-- TODO: Describe the skill file location and what it teaches Copilot -->
 
-This repository contains `skills/<platform>-mcp/SKILL.md`. Load it once via `/skills` in Copilot CLI.
+This repository contains `platforms/<platform>/SKILL.md`. Load it once via `/skills` in Copilot CLI.
 
 ## You're ready
 

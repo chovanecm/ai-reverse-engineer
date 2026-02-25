@@ -45,5 +45,4 @@ Reverse engineer the '<feature>' functionality.
 
 <!-- TODO: If you created a Copilot skill, link it here -->
 
-The `<platform>-mcp` skill in [`skills/<platform>-mcp/SKILL.md`](../../skills/<platform>-mcp/SKILL.md)
-can be loaded via `/skills` in Copilot CLI.
+The skill in [`SKILL.md`](SKILL.md) can be loaded via `/skills` in Copilot CLI.

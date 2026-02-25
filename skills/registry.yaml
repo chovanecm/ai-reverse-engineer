@@ -4,7 +4,7 @@ skills:
     description: >
       Reverse engineer ServiceNow features by querying tables, running background scripts,
       and inspecting artifact metadata via the snow CLI in MCP mode.
-    file: skills/servicenow-mcp/SKILL.md
+    file: platforms/servicenow/SKILL.md
     platform: servicenow
     guide: platforms/servicenow/01-setup.md
     load_via:

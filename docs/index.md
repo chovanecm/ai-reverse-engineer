@@ -8,7 +8,7 @@ This toolkit is **plugin-based**: a shared methodology layer applies to any plat
 
 | Platform | Module | Skill |
 |----------|--------|-------|
-| ServiceNow | [`platforms/servicenow/`](../platforms/servicenow/) | [`skills/servicenow-mcp/`](../skills/servicenow-mcp/SKILL.md) |
+| ServiceNow | [`platforms/servicenow/`](../platforms/servicenow/) | [`platforms/servicenow/SKILL.md`](../platforms/servicenow/SKILL.md) |
 
 ## How it works
 
