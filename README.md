@@ -22,7 +22,7 @@ docs/                    ← general methodology (platform-agnostic, GitHub-rend
 platforms/               ← platform-specific modules
   servicenow/            ← ServiceNow guide (setup, methodology, prompts, docs)
   _template/             ← skeleton for a new platform — copy this to add yours
-skills/                  ← Copilot skill files (auto-loaded by GitHub Copilot CLI)
+skills/                  ← Copilot skill files (load with /skills in Copilot CLI)
   registry.yaml          ← machine-readable skill registry
   servicenow-mcp/        ← ServiceNow skill
 template/                ← copy-paste starting point for a new investigation project
@@ -37,12 +37,12 @@ Read [`AGENTS.md`](AGENTS.md) — it lists all available skills and the exact st
 
 1. Clone this repository and open a Copilot CLI session inside it.
 2. Pick a platform from the table above and follow its module's setup guide (`platforms/<platform>/01-setup.md`).
-3. Skill files in `skills/` are **automatically loaded** by GitHub Copilot CLI — Copilot learns which tools to call and how to run the 5-step workflow.
+3. Run `/skills` in Copilot CLI to load the platform skill — it teaches Copilot which tools to call and how to run the 5-step workflow.
 4. Start investigating.
 
 ## How the skills work
 
-Skill files in `skills/` are **automatically loaded** by GitHub Copilot CLI when you work in this directory. They teach Copilot:
+Skill files in `skills/` are loaded via `/skills` in Copilot CLI. They teach Copilot:
 
 - Which MCP tools to call for which tasks
 - How to run the 5-step reverse engineering workflow

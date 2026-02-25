@@ -51,5 +51,5 @@ Study sys_metadata, download the relevant scripts, and write me a tutorial.
 ## Skill
 
 The `servicenow-mcp` skill in [`skills/servicenow-mcp/SKILL.md`](../../skills/servicenow-mcp/SKILL.md)
-is automatically loaded by GitHub Copilot CLI when you work in this directory.
+can be loaded via `/skills` in Copilot CLI.
 It teaches Copilot which `snow` tools to call, the 5-step workflow, and how to avoid overloading the context window.

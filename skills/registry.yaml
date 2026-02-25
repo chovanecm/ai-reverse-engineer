@@ -7,8 +7,8 @@ skills:
     file: skills/servicenow-mcp/SKILL.md
     platform: servicenow
     guide: platforms/servicenow/01-setup.md
-    auto_loaded_by:
-      - github-copilot-cli  # loaded automatically when working in this directory
+    load_via:
+      - /skills  # in GitHub Copilot CLI
     prerequisites:
       tools:
         - name: snow

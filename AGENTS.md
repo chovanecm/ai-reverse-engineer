@@ -6,7 +6,7 @@ Each module comes with a Copilot skill that teaches the AI which tools to call a
 ## Quick orientation
 
 ```
-skills/          ← Copilot skill files (auto-loaded by GitHub Copilot CLI)
+skills/          ← Copilot skill files (load with /skills in Copilot CLI)
 platforms/       ← Platform-specific setup and methodology guides
 docs/            ← General methodology (applies to all platforms)
 template/        ← Copy-paste starting point for a new investigation project
@@ -14,7 +14,7 @@ template/        ← Copy-paste starting point for a new investigation project
 
 ## Available skills
 
-Skill files in `skills/` are automatically loaded by GitHub Copilot CLI when you work in this directory.
+Skill files in `skills/` are loaded via `/skills` in Copilot CLI.
 
 | Skill | Skill file | Platform guide |
 |-------|-----------|----------------|

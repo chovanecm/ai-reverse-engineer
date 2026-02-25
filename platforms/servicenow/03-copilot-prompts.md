@@ -4,8 +4,7 @@ A reference of prompt patterns that work well for reverse engineering ServiceNow
 
 ## How the servicenow-mcp skill works
 
-When you work in this repository, GitHub Copilot CLI automatically loads the
-`skills/servicenow-mcp/SKILL.md` skill. This skill tells Copilot:
+Load the `skills/servicenow-mcp/SKILL.md` skill via `/skills` in Copilot CLI. This skill tells Copilot:
 
 - Which `snow` tools are available (and when to use each one)
 - How to run the 5-step reverse engineering workflow

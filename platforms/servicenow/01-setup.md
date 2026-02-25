@@ -112,9 +112,7 @@ documentation for the exact config format; the command is always `snow mcp`.
 
 ## 5. How the skill file works (Copilot CLI only)
 
-This repository contains `.github/skills/servicenow-mcp/SKILL.md`. This file is
-**automatically loaded** by GitHub Copilot CLI whenever you work in this directory —
-no configuration needed.
+This repository contains `skills/servicenow-mcp/SKILL.md`. Load it once via `/skills` in Copilot CLI.
 
 The skill tells Copilot:
 - Which MCP tools to call for which tasks (`snow_record_search`, `snow_run_script`, etc.)
@@ -127,7 +125,7 @@ The skill tells Copilot:
 > | | What it does | How it's set up |
 > |---|---|---|
 > | **MCP server** (`snow mcp`) | Makes `snow` tools callable by the AI | One-time config in `~/.copilot/mcp-config.json` |
-> | **Skill file** (`.github/skills/`) | Tells Copilot *when and how* to use those tools | Auto-loaded from the repo — nothing to configure |
+> | **Skill file** (`skills/`) | Tells Copilot *when and how* to use those tools | Load once via `/skills` in Copilot CLI |
 >
 > You need both. The MCP server provides the capability; the skill file provides the intelligence.
 
