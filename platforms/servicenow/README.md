@@ -1,44 +1,82 @@
 # ServiceNow — Reverse Engineering Module
 
-A guide for systematically reverse engineering ServiceNow functionality using the `snow` CLI and GitHub Copilot (or Claude Desktop).
+Use this as the **single flow** to reverse engineer a ServiceNow feature and produce structured documentation.
 
-This module implements the [general 5-step methodology](../../README.md#methodology) with ServiceNow-specific tooling.
+## What this module includes
 
-## What you'll be able to do
+- This file: end-to-end action flow (install → connect → investigate → document)
+- [`SKILL.md`](SKILL.md): Copilot skill that teaches tool selection and workflow
 
-- Explore any ServiceNow instance's custom functionality without needing source access or vendor docs
-- Identify all artifacts (tables, script includes, business rules, UI actions, transform maps) that make a feature work
-- Read and understand the actual JavaScript business logic
-- Produce browsable documentation your team can reference
+## Action flow
 
-## Prerequisites
+### 1) Install the CLI
 
-- Access to a ServiceNow instance (any role that can read metadata)
-- Python 3.8+ and `pipx` installed
-- GitHub Copilot CLI — or Claude Desktop
-- 30 minutes for setup, then as long as you want to investigate
+```bash
+pipx install "git+https://github.com/chovanecm/snow-run-python@main"
+```
 
-## Quick start (run in this order)
+Verify:
 
-1. [01-setup.md](01-setup.md) — install `snow`, configure your instance, and wire up your AI client
-2. [02-methodology.md](02-methodology.md) — execute the 5-step reverse-engineering workflow
-3. [03-copilot-prompts.md](03-copilot-prompts.md) — use copy/paste prompts to start investigating immediately
+```bash
+snow --help
+```
 
-Then publish your findings as a browsable site with the root [`template/`](../../template/) (see [`../../template/README.md`](../../template/README.md)).
+### 2) Configure your instance
 
-## Contents
+```bash
+snow add --default your-instance.service-now.com
+snow login
+snow record count incident
+```
 
-| File | What it covers |
-|------|---------------|
-| [01-setup.md](01-setup.md) | Install snow, configure instance, wire up AI |
-| [02-methodology.md](02-methodology.md) | The 5-step process applied to ServiceNow artifacts |
-| [03-copilot-prompts.md](03-copilot-prompts.md) | ServiceNow-specific prompt examples |
+If the final command returns a count, your connection works.
 
-For documentation structure and MkDocs, see [Building docs from findings](../../README.md#building-docs-from-findings).
-For general prompting tips, see [Prompting the AI](../../README.md#prompting-the-ai).
+### 3) Register MCP server (one-time per machine)
 
-## Skill
+Configure your AI client to run:
 
-The `servicenow-mcp` skill in [`SKILL.md`](SKILL.md)
-can be loaded via `/skills` in Copilot CLI.
-It teaches Copilot which `snow` tools to call, the 5-step workflow, and how to avoid overloading the context window.
+- command: `snow`
+- args: `mcp`
+
+For Copilot CLI, add an MCP server named `servicenow` and then load skills via `/skills`.
+
+### 4) Load the skill
+
+Load [`SKILL.md`](SKILL.md) in Copilot CLI.  
+You need both MCP + skill:
+
+- MCP: exposes `snow` tools
+- Skill: instructs the AI when and how to use them for reverse engineering
+
+### 5) Run the investigation workflow
+
+Use this order for any feature keyword:
+
+1. **Size** — count matching artifacts (`sys_metadata`)
+2. **Discover** — save IDs + types to disk
+3. **Inspect** — summarize artifact types from the saved index
+4. **Fetch** — read relevant artifacts selectively, one at a time
+5. **Document** — write markdown tutorial files from findings
+
+Starter prompt:
+
+> Reverse engineer the `<feature-name>` functionality in ServiceNow. Size first, then save an index of artifact IDs/types to disk, inspect types, fetch relevant scripts selectively, and write tutorial docs.
+
+### 6) Publish structured docs
+
+Use root template:
+
+```bash
+cd /path/to/ai-reverse-engineer
+cp -r template tutorials/<feature-name>
+cd tutorials/<feature-name>
+make build
+```
+
+Open `docs-html/index.html`.
+
+## Notes
+
+- Keep large responses out of context; save large searches to files and read selectively.
+- Focus on active artifacts first (`active=true`).
+- Cross-reference script include names across business rules and UI actions.
