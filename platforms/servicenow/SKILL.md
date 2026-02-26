@@ -25,14 +25,14 @@ snow_record_search(
     query="GOTO123TEXTQUERY321=<keyword>",
     fields="sys_id,sys_class_name",
     limit=200,
-    output_file="/tmp/<keyword>_artifacts.json"
+    output_file="./tmp/<keyword>_artifacts.json"
 )
 ```
 Returns `{"saved_to": "...", "count": N}` — nothing added to context yet.
 
 ### Step 3 — Inspect the index
 ```
-view /tmp/<keyword>_artifacts.json
+view ./tmp/<keyword>_artifacts.json
 ```
 Identify which `sys_class_name` types and which `sys_id` values are most relevant. **Do not load everything at once.**
 
@@ -63,10 +63,11 @@ Repeat for each interesting artifact. If there are many of the same type, batch 
 
 > **Note**: `sys_metadata` text search returns `sys_id` and `sys_class_name` but NOT `name`. Always follow up with a query on the specific child table to get the name and content.
 
+
 ### Step 5 — Write a tutorial
 After studying the relevant artifacts, use the repository's template to structure your documentation.
 
-1. Create a new directory for the feature: `cp -r template <feature-name>`
+1. Create a new directory for the feature: `cp -r template <feature-name>` if available in your context.
 2. Populate `docs-markdown/index.md` with an overview (business logic, implementation patterns).
 3. Create additional markdown files in `docs-markdown/` for deep dives (e.g., `data-model.md`, `scripts.md`).
 4. Update `mkdocs.yml` to include the new pages in the navigation.
@@ -91,7 +92,8 @@ active=true^sys_class_nameINsys_business_rule,sys_script_include
 ```
 
 ### Cross-reference across artifact types
-Business rules often call script includes. When investigating a feature, search for script include names within business rule scripts to map dependencies. This tells you which components depend on which.
+For example, business rules often call script includes. When investigating a feature, search for script include names within business rule scripts to map dependencies. This tells you which components depend on which.
+You can use sys_metadata to search for cross-references and explore feature boundaries but keep in mind the scope of the investigation so that you don't end up investigating a completely different feature.
 
 ### Use output files for large result sets
 Any search returning 20+ records should go to disk using `output_file`. The AI can then read the file progressively and summarize patterns without flooding the context window.
@@ -108,7 +110,7 @@ Always use the 5-step workflow: size → discover → inspect → fetch selectiv
 - "What fields does the incident table have? Show me reference fields."
 - "How many open incidents are there?"
 - "Search incident with query active=true, return number and state, limit 20."
-- "Export all open incidents to /tmp/open_incidents.json (use output_file)."
-- "Save the full schema of cmdb_ci to /tmp/cmdb_ci_schema.json."
+- "Export all open incidents to ./tmp/open_incidents.json (use output_file)."
+- "Save the full schema of cmdb_ci to ./tmp/cmdb_ci_schema.json."
 - "Run this background script on the default instance: gs.print('hello');"
 - "Reverse engineer the 'cbc' functionality — study sys_metadata, download relevant scripts, write a tutorial."
