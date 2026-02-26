@@ -162,7 +162,7 @@ Write the findings to tutorials/<name>/docs-markdown/."
 | Table | Recommended fields |
 |-------|----------|
 | `sys_script_include` | `name,script,description,active` |
-| `sys_business_rule` | `name,script,condition,filter_condition,when,order,active,advanced` |
+| `sys_script` | `name,script,condition,filter_condition,when,order,active,advanced` |
 | `sys_ui_action` | `name,script,condition,client_script,hint,active` |
 | `sys_db_object` | `name,label,super_class` |
 | `sys_dictionary` | `name,element,column_label,internal_type,reference` |
