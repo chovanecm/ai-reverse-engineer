@@ -53,7 +53,7 @@ Repeat for each interesting artifact. If there are many of the same type, batch 
 | Table | Recommended fields |
 |---|---|
 | `sys_script_include` | `name,script,description,active` |
-| `sys_business_rule` | `name,script,condition,filter_condition,when,order,active,advanced` |
+| `sys_script` | `name,script,condition,filter_condition,when,order,active,advanced` |
 | `sys_ui_action` | `name,script,condition,client_script,hint,active` |
 | `sys_ui_script` | `name,script,active` |
 | `sysauto_script` | `name,script,active` |
