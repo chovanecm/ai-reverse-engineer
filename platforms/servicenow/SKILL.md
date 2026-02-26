@@ -73,6 +73,7 @@ After studying the relevant artifacts, use the repository's template to structur
 4. Update `mkdocs.yml` to include the new pages in the navigation.
 
 **Do NOT use the `_template` directory.** Use the `template` directory at the root of the repository.
+**Important**: Clearly mark unverified assumptions. Cite verified assumptions (in a way that user can easily verify the statement).
 
 ---
 
