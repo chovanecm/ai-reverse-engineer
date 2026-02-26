@@ -18,14 +18,13 @@ This module implements the [general 5-step methodology](../../README.md#methodol
 - GitHub Copilot CLI — or Claude Desktop
 - 30 minutes for setup, then as long as you want to investigate
 
-## Quick start
+## Quick start (run in this order)
 
-See [01-setup.md](01-setup.md) for full setup instructions. Once ready, start an investigation:
+1. [01-setup.md](01-setup.md) — install `snow`, configure your instance, and wire up your AI client
+2. [02-methodology.md](02-methodology.md) — execute the 5-step reverse-engineering workflow
+3. [03-copilot-prompts.md](03-copilot-prompts.md) — use copy/paste prompts to start investigating immediately
 
-```
-Reverse engineer the 'approval' functionality.
-Study sys_metadata, download the relevant scripts, and write me a tutorial.
-```
+Then publish your findings as a browsable site with the root [`template/`](../../template/) (see [`../../template/README.md`](../../template/README.md)).
 
 ## Contents
 

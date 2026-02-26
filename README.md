@@ -4,6 +4,23 @@ A methodology and tooling guide for systematically reverse engineering software 
 
 This toolkit is **platform-agnostic**: shared methodology lives here in `README.md`, and each platform is a self-contained module under `platforms/`.
 
+## Start here (new users)
+
+If your goal is to quickly produce structured reverse-engineering docs:
+
+1. **Pick a platform module** (for ServiceNow use [`platforms/servicenow/`](platforms/servicenow/)).
+2. **Install and configure tools** using the module's `01-setup.md`.
+3. **Run the investigation workflow** from the module's `02-methodology.md`.
+4. **Publish your findings as browsable docs** using [`template/`](template/).
+
+Fast path for ServiceNow:
+- Setup: [`platforms/servicenow/01-setup.md`](platforms/servicenow/01-setup.md)
+- Investigation workflow: [`platforms/servicenow/02-methodology.md`](platforms/servicenow/02-methodology.md)
+- Prompt examples: [`platforms/servicenow/03-copilot-prompts.md`](platforms/servicenow/03-copilot-prompts.md)
+- Build docs site: [`template/README.md`](template/README.md)
+
+If you're extending this repository with another platform, copy [`platforms/_template/`](platforms/_template/).
+
 ## Platform modules
 
 | Platform | Module | Skill |
