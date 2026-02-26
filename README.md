@@ -2,36 +2,44 @@
 
 A methodology and tooling guide for systematically reverse engineering software platforms using AI agents.
 
-This toolkit is **platform-agnostic**: shared methodology lives here in `README.md`, and each platform is a self-contained module under `platforms/`.
+This toolkit is **platform-agnostic**: shared methodology lives here, and each platform is a self-contained module under `platforms/`.
+
+## Quick start
+
+**I want to reverse engineer ServiceNow** → Go to [`platforms/servicenow/`](platforms/servicenow/)
+
+**I want to understand the methodology** → See [Methodology](#methodology) below
+
+**I want to add a new platform** → See [Contributing](#contributing) and copy [`platforms/_template/`](platforms/_template/)
+
+---
 
 ## Platform modules
 
-| Platform | Module | Skill |
-|----------|--------|-------|
-| ServiceNow | [`platforms/servicenow/`](platforms/servicenow/) | [`platforms/servicenow/SKILL.md`](platforms/servicenow/SKILL.md) |
+Each platform module includes installation instructions, setup guidance, and methodology tailored to that platform's artifact model.
 
-> Want to add a platform? See [Contributing](#contributing) below and copy [`platforms/_template/`](platforms/_template/).
+| Platform | Module |
+|----------|--------|
+| ServiceNow | [`platforms/servicenow/`](platforms/servicenow/) |
+
+> Want to add a platform? Copy [`platforms/_template/`](platforms/_template/) and follow the [Contributing](#contributing) steps below.
 
 ## Repository layout
 
 ```
 platforms/
-  servicenow/     ← ServiceNow guide: setup, methodology, prompts, SKILL.md
+  servicenow/     ← Start here: setup, methodology, prompts, SKILL.md
   _template/      ← Copy this to add a new platform module
 template/         ← Copy this to start a new investigation project
-README.md         ← You are here: methodology, contributing, building docs
-AGENTS.md         ← AI agent bootstrap guide (read this if you're an AI agent)
+README.md         ← You are here: overview, methodology, contributing, building docs
+AGENTS.md         ← AI agent bootstrap guide (read if you're an AI agent)
 ```
-
-> **Two templates, different purposes:**
-> - `platforms/_template/` — skeleton for *adding a new platform* to this repo
-> - `template/` — starting point for *a new investigation project* (creates browsable docs from findings)
 
 ---
 
 ## Methodology
 
-A universal 5-step process for investigating and documenting any software platform. Each platform module applies these steps with platform-specific tooling.
+A universal 5-step process for investigating any software platform. Each platform module applies these steps with platform-specific tooling.
 
 **Core principle: never load everything into the AI's context at once. Index first, read selectively.**
 
@@ -112,7 +120,7 @@ Start with `index.md` + one overview file. Add detail incrementally.
 **Iterate:**
 > "Review `tutorials/<name>/docs-markdown/02-data-model.md` and identify any gaps."
 
-For platform-specific prompt examples, see the platform module (e.g. [`platforms/servicenow/03-copilot-prompts.md`](platforms/servicenow/03-copilot-prompts.md)).
+For platform-specific prompt examples, see your platform module (e.g. [`platforms/servicenow/`](platforms/servicenow/)).
 
 ---
 
@@ -160,23 +168,19 @@ cp -r platforms/_template platforms/<your-platform>
 Each file contains `<!-- TODO: ... -->` comments. Replace all `<PLATFORM>` placeholders.
 
 A platform module contains:
-1. **`README.md`** — what the platform is, quick-start
-2. **`01-setup.md`** — install tools, configure credentials, wire up AI
-3. **`02-methodology.md`** — the 5-step process applied to this platform's artifact model
-4. **`03-copilot-prompts.md`** *(optional)* — platform-specific prompt examples
-5. **`SKILL.md`** *(optional)* — Copilot skill file (load via `/skills` in Copilot CLI)
+1. **`README.md`** — what the platform is, quick-start setup, usage examples, methodology
+2. **`SKILL.md`** *(optional)* — Copilot skill file (load via `/skills` in Copilot CLI)
 
-### 3. Update AGENTS.md and README.md
+### 3. Update the platform table above
 
-Add a row to the skills table in [`AGENTS.md`](AGENTS.md) and to the platform table above.
+Add a row to the platform table in this README.
 
 ### 4. Open a pull request
 
 Title: `feat: add <Platform> platform module`
 
 **Checklist:**
-- [ ] All `<PLACEHOLDER>` and `<!-- TODO -->` items replaced
-- [ ] `01-setup.md` install commands tested and working
-- [ ] `AGENTS.md` skills table updated
-- [ ] `README.md` platform table updated
+- [ ] All `<PLACEHOLDER>` and `<!-- TODO -->` items replaced in README.md and SKILL.md
+- [ ] Credentials and setup tested and working
+- [ ] Platform table in root README updated
 - [ ] File names use lowercase-kebab-case

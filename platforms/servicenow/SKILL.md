@@ -75,6 +75,32 @@ After studying the relevant artifacts, use the repository's template to structur
 
 ---
 
+## ServiceNow-specific tips for investigation
+
+When reverse engineering, always keep these practices in mind:
+
+### Check `sys_class_name` always
+The `sys_metadata` text search matches all artifact types (script includes, business rules, UI actions, etc.). When you find matching records, always confirm which specific table to query before fetching full records — don't assume it's one type.
+
+### Filter by active status
+Always note `active=true` — inactive artifacts are noise when understanding current behavior. Include `active=true` in your queries to avoid wasting context on disabled rules, scripts, and actions that aren't actually running.
+
+Example query:
+```
+active=true^sys_class_nameINsys_business_rule,sys_script_include
+```
+
+### Cross-reference across artifact types
+Business rules often call script includes. When investigating a feature, search for script include names within business rule scripts to map dependencies. This tells you which components depend on which.
+
+### Use output files for large result sets
+Any search returning 20+ records should go to disk using `output_file`. The AI can then read the file progressively and summarize patterns without flooding the context window.
+
+### Don't load everything at once
+Always use the 5-step workflow: size → discover → inspect → fetch selectively. Index first, then read only what matters.
+
+---
+
 ## Example prompts
 
 - "List my ServiceNow instances and tell me which one is default."
