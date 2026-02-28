@@ -40,7 +40,7 @@ Identify which `sys_class_name` types and which `sys_id` values are most relevan
 Single-record queries return small payloads that fit safely in context:
 ```python
 snow_record_search(
-    table="sys_business_rule",
+    table="sys_script",
     query="sys_id=<sys_id>",
     fields="name,script,condition,filter_condition,when,order,active,advanced",
     display_values="values"
